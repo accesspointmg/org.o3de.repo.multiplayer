@@ -12,21 +12,27 @@
 
 #pragma once
 
-#include <AzCore/Module/Module.h>
+#include <AzCore/Math/Aabb.h>
+#include <Source/MultiplayerTypes.h>
 
 namespace Multiplayer
 {
-    class MultiplayerModule
-        : public AZ::Module
+    class ServerMapPartitioner
     {
     public:
+        ServerMapPartitioner();
 
-        AZ_RTTI(MultiplayerModule, "{497FF057-6CE1-43D5-9A9F-D2B7ABF6D3A7}", AZ::Module);
-        AZ_CLASS_ALLOCATOR(MultiplayerModule, AZ::SystemAllocator, 0);
+        void PartitionMap(uint32_t regionCount, uint32_t shardCount);
 
-        MultiplayerModule();
-        ~MultiplayerModule() override = default;
+        uint32_t GetRegionCount() const;
+        AZ::Aabb GetMapRegion(uint32_t index) const;
+        AZ::Aabb GetMapRegionForHost(HostId hostId);
 
-        AZ::ComponentTypeList GetRequiredSystemComponents() const override;
+        const AZ::Aabb& GetWholeMap() const;
+    private:
+        AZ::Aabb m_wholeMap;
+        AZStd::vector<AZ::Aabb> m_regions;
+        uint32_t m_regionCount;
+        uint32_t m_shardCount;
     };
 }

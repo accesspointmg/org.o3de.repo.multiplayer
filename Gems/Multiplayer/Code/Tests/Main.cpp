@@ -10,23 +10,8 @@
 *
 */
 
-#pragma once
+#include <AzCore/UnitTest/UnitTest.h>
+#include <AzTest/AzTest.h>
 
-#include <AzCore/Module/Module.h>
+AZ_UNIT_TEST_HOOK(DEFAULT_UNIT_TEST_ENV);
 
-namespace Multiplayer
-{
-    class MultiplayerModule
-        : public AZ::Module
-    {
-    public:
-
-        AZ_RTTI(MultiplayerModule, "{497FF057-6CE1-43D5-9A9F-D2B7ABF6D3A7}", AZ::Module);
-        AZ_CLASS_ALLOCATOR(MultiplayerModule, AZ::SystemAllocator, 0);
-
-        MultiplayerModule();
-        ~MultiplayerModule() override = default;
-
-        AZ::ComponentTypeList GetRequiredSystemComponents() const override;
-    };
-}

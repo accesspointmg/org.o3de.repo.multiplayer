@@ -10,8 +10,9 @@
 #
 
 set(FILES
-    Tests/Main.cpp
-    Tests/IMultiplayerConnectionMock.h
-    Tests/MultiplayerSystemTests.cpp
-    Tests/RewindableObjectTests.cpp
+    ${LY_ROOT_FOLDER}/Code/Framework/AzNetworking/AzNetworking/AutoGen/AutoPackets_Header.jinja
+    ${LY_ROOT_FOLDER}/Code/Framework/AzNetworking/AzNetworking/AutoGen/AutoPackets_Inline.jinja
+    ${LY_ROOT_FOLDER}/Code/Framework/AzNetworking/AzNetworking/AutoGen/AutoPackets_Source.jinja
+    ${LY_ROOT_FOLDER}/Code/Framework/AzNetworking/AzNetworking/AutoGen/AutoPacketDispatcher_Header.jinja
+    ${LY_ROOT_FOLDER}/Code/Framework/AzNetworking/AzNetworking/AutoGen/AutoPacketDispatcher_Inline.jinja
 )

@@ -10,23 +10,20 @@
 *
 */
 
-#pragma once
-
-#include <AzCore/Module/Module.h>
-
 namespace Multiplayer
 {
-    class MultiplayerModule
-        : public AZ::Module
+    inline const AzNetworking::IpAddress& ServerToServerConnectionData::GetServerAddress() const
     {
-    public:
+        return m_serverAddress;
+    }
 
-        AZ_RTTI(MultiplayerModule, "{497FF057-6CE1-43D5-9A9F-D2B7ABF6D3A7}", AZ::Module);
-        AZ_CLASS_ALLOCATOR(MultiplayerModule, AZ::SystemAllocator, 0);
+    inline bool ServerToServerConnectionData::IsReady()
+    {
+        return m_isReady;
+    }
 
-        MultiplayerModule();
-        ~MultiplayerModule() override = default;
-
-        AZ::ComponentTypeList GetRequiredSystemComponents() const override;
-    };
+    inline void ServerToServerConnectionData::SetIsReady(bool isReady)
+    {
+        m_isReady = isReady;
+    }
 }
