@@ -10,15 +10,27 @@
 *
 */
 
+#pragma once
+
+#include <IEditor.h>
+
+#include <AzCore/Component/Component.h>
+#include <AzCore/Component/TickBus.h>
+#include <AzCore/Console/IConsole.h>
+#include <AzCore/Console/ILogger.h>
+
+#include <AzToolsFramework/Entity/EditorEntityContextBus.h>
+
+
 namespace Multiplayer
 {
-    inline bool ClientToServerConnectionData::CanSendUpdates() const
+    //! MultiplayerEditorDispatcher is responsible for dispatching delta from the Editor to an Editor launched local server
+    class MultiplayerEditorDispatcher final
     {
-        return m_canSendUpdates;
-    }
+    public:
+        MultiplayerEditorDispatcher();
+        ~MultiplayerEditorDispatcher() = default;
 
-    inline void ClientToServerConnectionData::SetCanSendUpdates(bool canSendUpdates)
-    {
-        m_canSendUpdates = canSendUpdates;
-    }
+    private:
+    };
 }
