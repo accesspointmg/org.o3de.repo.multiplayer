@@ -15,7 +15,7 @@
 #include <AzCore/Time/ITime.h>
 #include <AzCore/std/containers/vector.h>
 #include <AzCore/std/containers/array.h>
-#include <Include/MultiplayerTypes.h>
+#include <Multiplayer/MultiplayerTypes.h>
 
 namespace AzNetworking
 {
@@ -37,6 +37,7 @@ namespace Multiplayer
         using MetricRingbuffer = AZStd::array<uint64_t, RingbufferSamples>;
         struct Metric
         {
+            Metric();
             uint64_t m_totalCalls = 0;
             uint64_t m_totalBytes = 0;
             MetricRingbuffer m_callHistory;
