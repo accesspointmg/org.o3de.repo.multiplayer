@@ -12,7 +12,7 @@
 
 #pragma once
 
-#include <Include/MultiplayerTypes.h>
+#include <Multiplayer/MultiplayerTypes.h>
 #include <AzNetworking/DataStructures/FixedSizeBitset.h>
 #include <AzCore/std/containers/vector.h>
 #include <AzCore/std/smart_ptr/unique_ptr.h>
@@ -28,8 +28,9 @@ namespace Multiplayer
     {
     public:
         virtual ~IMultiplayerComponentInput() = default;
-        virtual NetComponentId GetComponentId() const = 0;
+        virtual NetComponentId GetNetComponentId() const = 0;
         virtual bool Serialize(AzNetworking::ISerializer& serializer) = 0;
+        virtual IMultiplayerComponentInput& operator= (const IMultiplayerComponentInput&) { return *this; }
     };
 
     using MultiplayerComponentInputVector = AZStd::vector<AZStd::unique_ptr<IMultiplayerComponentInput>>;

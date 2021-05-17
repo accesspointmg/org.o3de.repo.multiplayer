@@ -15,9 +15,10 @@
 #include <AzCore/Component/Component.h>
 #include <AzNetworking/Serialization/ISerializer.h>
 #include <AzNetworking/DataStructures/FixedSizeBitsetView.h>
-#include <Include/NetworkEntityHandle.h>
-#include <Include/MultiplayerTypes.h>
-#include <Include/IMultiplayer.h>
+#include <Multiplayer/NetworkEntity/NetworkEntityHandle.h>
+#include <Multiplayer/MultiplayerStats.h>
+#include <Multiplayer/MultiplayerTypes.h>
+#include <Multiplayer/IMultiplayer.h>
 
 //! Macro to declare bindings for a multiplayer component inheriting from MultiplayerComponent
 #define AZ_MULTIPLAYER_COMPONENT(ComponentClass, Guid, Base) \
@@ -62,11 +63,15 @@ namespace Multiplayer
         //! @}
 
         NetEntityId GetNetEntityId() const;
-        NetEntityRole GetNetEntityRole() const;
+        bool IsAuthority() const;
+        bool IsAutonomous() const;
+        bool IsServer() const;
+        bool IsClient() const;
         ConstNetworkEntityHandle GetEntityHandle() const;
         NetworkEntityHandle GetEntityHandle();
         void MarkDirty();
 
+        virtual void SetOwningConnectionId(AzNetworking::ConnectionId connectionId) = 0;
         virtual NetComponentId GetNetComponentId() const = 0;
 
         virtual bool HandleRpcMessage(AzNetworking::IConnection* invokingConnection, NetEntityRole netEntityRole, NetworkEntityRpcMessage& rpcMessage) = 0;
